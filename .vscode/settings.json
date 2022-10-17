@@ -1,0 +1,4 @@
+{
+  // Change path to your Python interpreter location for your Virtual Env
+  "robot.language-server.python": "~/.pyenv/versions/dexcom_api_code_challenge/bin/python"
+}
