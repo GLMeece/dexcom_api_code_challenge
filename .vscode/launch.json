@@ -1,0 +1,22 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Robot Framework: Launch Template",
+      "type": "robotframework-lsp",
+      "request": "launch",
+      "terminal": "integrated",
+      "args": [
+        "-V",
+        "${workspaceFolder}/Environment/prod.yaml",
+        "-L",
+        "TRACE",
+        "-d",
+        "Results",
+        "-W",
+        "-120",
+        "-T"
+      ]
+    }
+  ]
+}

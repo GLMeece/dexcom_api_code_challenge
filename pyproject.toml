@@ -1,0 +1,22 @@
+[tool.robocop]
+exclude = [
+    "0302",
+    "0309",
+    "0310",
+    "0501",
+    "0503",
+    "0504",
+    "0505",
+    "0506",
+    "0605",
+    "1003",
+    "1009",
+]
+reports = ["rules_by_error_type", "rules_by_id"]
+format = "{source_rel}:Line {line}; Col {col} [{severity}], {rule_id}, {desc}, (name)"
+filetypes = [".robot", ".resource"]
+configure = [
+    "line-too-long:line_length:140",
+    "file-too-long:max_lines:700",
+    "too-long-test-case:max_len:104",
+]

@@ -58,16 +58,29 @@ The Dexcom API’s “Info Endpoint” needs test automation! Create an automate
 
 This project utilizes Python and (Python-based) Robot Framework. As such, at minimum you will need:
 
-- [Python](https://www.python.org/downloads/) - version 3.9 or later. Note, you may wish to use a Python version management system such as [PyEnv](https://github.com/pyenv/pyenv#simple-python-version-management-pyenv) if your OS supports it (it can address downloading/installing any version of Python you wish).
-- The ability to create virtual environments ([here's a good primer](https://realpython.com/python-virtual-environments-a-primer/), or if you use PyEnv [see this section](https://realpython.com/intro-to-pyenv/#virtual-environments-and-pyenv))
-- [Git](https://git-scm.com/downloads) so as to clone this repository
-- A terminal such as [Terminal](https://support.apple.com/guide/terminal/welcome/mac) (or [iTerm2](https://iterm2.com/)) on macOS or [PowerShell](https://learn.microsoft.com/en-us/powershell/) on Windows. Examples will use the macOS Terminal
+- [Python](https://www.python.org/downloads/) - version 3.9 or later. **Note**: you may wish to use a Python version management system such as [PyEnv](https://github.com/pyenv/pyenv#simple-python-version-management-pyenv) if your OS supports it (it can address downloading/installing any version of Python you wish).
+- The ability to create virtual environments ([here's a good primer](https://realpython.com/python-virtual-environments-a-primer/), or if you use PyEnv [see this section](https://realpython.com/intro-to-pyenv/#virtual-environments-and-pyenv)).
+- [Git](https://git-scm.com/downloads) - to clone _this_ repository.
+- A terminal such as [Terminal](https://support.apple.com/guide/terminal/welcome/mac) (or [iTerm2](https://iterm2.com/)) on macOS or [PowerShell](https://learn.microsoft.com/en-us/powershell/) on Windows. Examples will assume the macOS Terminal.
 
 ### Cloning
 
 In a terminal, execute the following:
 
 ```bash
-git clone github.com/foo
+git clone https://github.com/GLMeece/dexcom_api_code_challenge.git
 ```
 
+## Executing
+
+With a terminal (as indicated above):
+
+1. `cd` into the root of this repository.
+2. Execute: `robot -V Environment/prod.yaml -L TRACE -d Results -W -120 -T Tests`
+
+**Note**: Change the YAML filename to `sandbox.yaml` to execute against the Sandbox URL.
+
+## Notes
+
+- From all I could tell, the API does not return a media type of XML, regardless of the request header indicating `Accept: application/xml` and `Content-Type: application/xml`. The return header always indicates `Content-Type: application/json`. Thus, the test case expecting a valid XML media type returned will always fail.
+- I considered using the [RESTinstance library](https://pypi.org/project/RESTinstance/) instead of the more typically used [RequestsLibrary](https://github.com/MarketSquare/robotframework-requests#readme). However, some of the paradigms are a bit different than I'm used to, so I decided to defer learning this library to another time.
