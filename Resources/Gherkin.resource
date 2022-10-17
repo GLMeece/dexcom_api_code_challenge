@@ -1,5 +1,5 @@
 *** Settings ***
-Documentation       This resource file contains keywords for BDD/Gherkin syntax
+Documentation       This resource file contains keywords and variables for BDD/Gherkin syntax
 
 Library             Collections
 Library             RequestsLibrary
@@ -17,7 +17,6 @@ GET Response is Set
     [Arguments]    ${header_val}=${None}
     Set Suite Variable
     ...    &{json_accept_content}
-    ...    &{xml_header}
     ...    Accept=application/json
     ...    Content-Type=application/json
     IF    ${header_val}
