@@ -32,20 +32,23 @@ Library             Collections
 Status OK is Returned
     [Documentation]    GETting the ``info`` URL should return a 200 status code
     [Tags]    api    get    status_code    bdd
-    Given GET Response is Set
+    Given Endpoint is Reachable
+    When GET Response is Set
     Then Status Code Should be OK/Good
 
 Content-Type Header is Valid JSON
     [Documentation]    Validate the return
     [Tags]    api    get    json    bdd
-    Given GET Response is Set
+    Given Endpoint is Reachable
+    When GET Response is Set
     Then Return is Valid JSON
 
 Content-Type Header is Valid XML [FAILS]
     [Documentation]    Verify that the Content-Type header is returned as a valid xml media type.
     ...    Hint: Some test cases might fail**
     [Tags]    api    get    xml    bdd    robot:skip-on-failure
-    Given GET Response is Set, Expecting XML
+    Given Endpoint is Reachable
+    When GET Response is Set, Expecting XML
     Then Content-type Header Should be XML
 
 Dexcom API Return has Fields & Values
@@ -57,7 +60,8 @@ Dexcom API Return has Fields & Values
     ...    - ``Part Number (PN)`` is ``350-0019``
     ...    - sub-components array test in test case *Product Dexcom API Sub-Components Contain Items*
     [Tags]    api    get    bdd
-    Given GET Response is Set
+    Given Endpoint is Reachable
+    When GET Response is Set
     Then Dexcom API Has Correct Fields & Values
 
 Product Dexcom API Sub-Components Contain Items [FAILS]
@@ -65,7 +69,8 @@ Product Dexcom API Sub-Components Contain Items [FAILS]
     ...    - Verify that the "Dexcom API" Sub-Components array includes an item with the a "name" of "api-gateway".
     ...    - Verify that the "Dexcom API" Sub-Components array includes an item with the a "name" of "insulin-service".
     [Tags]    api    get    bdd    robot:skip-on-failure
-    Given GET Response is Set
+    Given Endpoint is Reachable
+    When GET Response is Set
     Then Dexcom API Sub-Components Contain 'api-gateway' & 'insulin-service' Items
 
 Product Dexcom API Sub-Components Contains 'standard-offering'
@@ -74,5 +79,6 @@ Product Dexcom API Sub-Components Contains 'standard-offering'
     ...
     ...    *Note*: This test case reflects what is actually returned on the public ``info`` endpoint.
     [Tags]    api    get    bonus
-    Given GET Response is Set
+    Given Endpoint is Reachable
+    When GET Response is Set
     Then Verify Sub-components Contains 'standard-offering'

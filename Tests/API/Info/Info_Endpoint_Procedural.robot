@@ -26,7 +26,7 @@ Documentation       = Dexcom Coding Challenge =
 
 Library             Collections
 Library             RequestsLibrary
-Library             ../../../Library/rf_utilities.py
+Library             ../../../Library/http_utilities.py
 
 
 *** Variables ***
@@ -39,12 +39,16 @@ ${ok_status}        200
 Status OK is Returned
     [Documentation]    GETting the ``info`` URL should return a 200 status code
     [Tags]    api    get    status_code
+    ${reachable}    URL is Reachable    ${base_url}/${endpoint}
+    Should Be True    ${reachable}
     ${response}    GET    ${base_url}/${endpoint}
     Status Should Be    ${ok_status}
 
 Content-Type Header is Valid JSON
     [Documentation]    Validate the return
     [Tags]    api    get    json
+    ${reachable}    URL is Reachable    ${base_url}/${endpoint}
+    Should Be True    ${reachable}
     ${resp}    GET    ${base_url}/${endpoint}
     Should Be Equal As Strings    application/json    ${resp.headers}[Content-Type]
     ${is_valid_json}    Validate Json    ${resp.json()}
@@ -54,6 +58,8 @@ Content-Type Header is Valid XML [FAILS]
     [Documentation]    Verify that the Content-Type header is returned as a valid xml media type.
     ...    Hint: Some test cases might fail**
     [Tags]    api    get    xml    robot:skip-on-failure
+    ${reachable}    URL is Reachable    ${base_url}/${endpoint}
+    Should Be True    ${reachable}
     ${resp}    GET    ${base_url}/${endpoint}    headers=&{xml_header}
     Should Be Equal As Strings    application/xml    ${resp.headers}[Content-Type]
 
@@ -66,6 +72,8 @@ Dexcom API Return has Fields & Values
     ...    - ``Part Number (PN)`` is ``350-0019``
     ...    - sub-components array test in test case *Product Dexcom API Sub-Components Contain Items*
     [Tags]    api    get
+    ${reachable}    URL is Reachable    ${base_url}/${endpoint}
+    Should Be True    ${reachable}
     Set Test Variable    ${contains_dexcom_api}    ${False}
     ${resp}    GET    ${base_url}/${endpoint}
     FOR    ${dictionary}    IN    @{resp.json()}
@@ -83,6 +91,8 @@ Product Dexcom API Sub-Components Contain Items
     ...    - Verify that the "Dexcom API" Sub-Components array includes an item with the a "name" of "api-gateway".
     ...    - Verify that the "Dexcom API" Sub-Components array includes an item with the a "name" of "insulin-service".
     [Tags]    api    get    robot:skip-on-failure
+    ${reachable}    URL is Reachable    ${base_url}/${endpoint}
+    Should Be True    ${reachable}
     Set Test Variable    ${contains_dexcom_api}    ${False}
     Set Test Variable    ${contains_api_gateway}    ${False}
     Set Test Variable    ${contains_insulin_service}    ${False}
@@ -116,6 +126,8 @@ Product Dexcom API Sub-Components Contains 'standard-offering'
     ...
     ...    *Note*: This test case reflects what is actually returned on the public ``info`` endpoint.
     [Tags]    api    get    bonus
+    ${reachable}    URL is Reachable    ${base_url}/${endpoint}
+    Should Be True    ${reachable}
     IF    "sandbox" in "${base_url}"    Set Tags    robot:skip-on-failure
     Set Test Variable    ${contains_dexcom_api}    ${False}
     Set Test Variable    ${contains_standard_offering}    ${False}

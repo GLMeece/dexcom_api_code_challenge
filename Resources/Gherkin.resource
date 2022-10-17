@@ -3,7 +3,7 @@ Documentation       This resource file contains keywords and variables for BDD/G
 
 Library             Collections
 Library             RequestsLibrary
-Library             ../Library/rf_utilities.py
+Library             ../Library/http_utilities.py
 
 
 *** Variables ***
@@ -12,6 +12,12 @@ ${endpoint}         info
 
 
 *** Keywords ***
+Endpoint is Reachable
+    [Documentation]    Calls ``URL is Reachable`` to determine if URL can be
+    ...    routed to.
+    ${reachable}    URL is Reachable    ${base_url}/${endpoint}
+    Should Be True    ${reachable}
+
 GET Response is Set
     [Documentation]    Verify that response is returned from GET request
     [Arguments]    ${header_val}=${None}

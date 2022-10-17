@@ -1,6 +1,6 @@
 # README for API Coding Challenge
 
-This repository represents [Greg Meece](mailto:glmeece@gmail.com)'s approach to addressing the Dexcom API Coding Challenge. 
+This repository represents [Greg Meece](mailto:glmeece@gmail.com)'s approach to addressing the Dexcom API Coding Challenge.
 
 ## Original Challenge Statement
 
@@ -60,7 +60,7 @@ In a terminal:
 
 ## Executing
 
-With a terminal (as indicated above), making sure you are at the root of this repository, execute: 
+With a terminal (as indicated above), making sure you are at the root of this repository, execute:
 
 ```bash
 robot -V Environment/prod.yaml -L TRACE -d Results -W -120 -T Tests
@@ -72,6 +72,12 @@ robot -V Environment/prod.yaml -L TRACE -d Results -W -120 -T Tests
   - `-L TRACE` sets the logging to its most verbose level. Other values can be invoked as desired.
   - `-d Results` tells Robot Framework where to place the test run output files.
   - `-T` forces the output files to have a timestamp in the filename. This allows multiple execution runs without overwriting existing files.
+
+  ## Source Documentation
+
+  Open any of the HTML files in the **Docs** directory for documentation on the test suites, resource file, and Python library.
+
+  To regenerate the documents at any time: `./generate_docs.sh` (on macOS - commands can be executed one at a time in PowerShell on Windows)
 
 ## Design Notes
 
